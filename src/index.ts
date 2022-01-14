@@ -1,12 +1,17 @@
 import express from 'express'
+import * as bodyParser from 'body-parser'
+import { routes } from './api/v1/routes'
 
 const app = express()
 
-app.use('v1')
+// create application/json parser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use('/api/v1', routes)
 
 app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
 const port = process.env.PORT || 4000
-app.listen(port, () => console.log(`Listening on ${port} ...`))
+app.listen(port, () => console.log(`Listening on port ${port} ...`))
