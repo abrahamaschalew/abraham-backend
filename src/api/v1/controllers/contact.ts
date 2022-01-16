@@ -1,7 +1,21 @@
-export const postContact = (req, res) => {
-  res.json({ message: 'Thanks, I will touch with you soon' })
-  // insert contat data into
-  // send thanks message
+import { contactService } from '../services'
+
+export const postContact = async (req, res) => {
+  const contactForm = {
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  }
+
+  try {
+    const contact = new contactService()
+    await contact.postContact(contactForm)
+    // send thanks message
+    res.status(200).json({ message: 'Thanks, I will touch with you soon' })
+  } catch (error) {
+    // send thanks message
+    res.status(400).json({ message: `Something Wrong,  ${error}` })
+  }
 }
 
 export const getContacts = (req, res) => {
