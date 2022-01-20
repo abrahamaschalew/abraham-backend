@@ -1,3 +1,4 @@
-import { contactService } from './contact'
+import { ContactService } from './contact'
+import AdminService from './admin'
 
-export { contactService }
+export { ContactService, AdminService }

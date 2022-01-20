@@ -1,4 +1,4 @@
-import { contactService } from '../services'
+import { ContactService } from '../services'
 
 export const postContact = async (req, res) => {
   const contactForm = {
@@ -8,7 +8,7 @@ export const postContact = async (req, res) => {
   }
 
   try {
-    const contact = new contactService()
+    const contact = new ContactService()
     await contact.postContact(contactForm)
     // send thanks message
     res.status(200).json({ message: 'Thanks, I will touch with you soon' })

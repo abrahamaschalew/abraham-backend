@@ -1,6 +1,6 @@
 import { Contact } from '../models'
 
-export class contactService {
+export class ContactService {
   myvar: string = 'hello'
   postContact(contactForm) {
     // insert contact data into Contact collection
