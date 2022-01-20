@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken'
 import { AdminService } from '../services'
 
 export const adminLogin = async (req, res) => {
@@ -8,8 +9,14 @@ export const adminLogin = async (req, res) => {
 
   try {
     const user = new AdminService()
-    const userData = await user.login(form)
-    res.status(200).json({ message: 'User logged In', userData })
+    const userData: any = await user.login(form)
+
+    // Generate and provide a token for the user to use others route
+    const token = await jwt.sign({ ...userData }, process.env.jwt, {
+      expiresIn: '1800s'
+    })
+
+    res.status(200).json({ message: 'User logged In', userData, token })
   } catch (error) {
     res.status(400).json({ message: "Sorry, the user coudn't found" })
   }

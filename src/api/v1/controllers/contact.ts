@@ -18,9 +18,15 @@ export const postContact = async (req, res) => {
   }
 }
 
-export const getContacts = (req, res) => {
-  res.json({ message: 'Getting Contacts' })
-  // JWT Auth
-  // get contacts
-  // send contacts
+export const getContacts = async (req, res) => {
+  try {
+    // get contacts
+    const contact = new ContactService()
+    const contacts: any = await contact.contacts()
+    if (contacts.length == 0)
+      return res.status(404).json({ message: 'Not found any contact message' })
+    res.status(500).json({ contacts })
+  } catch (error) {
+    res.status(400).json({ error })
+  }
 }
