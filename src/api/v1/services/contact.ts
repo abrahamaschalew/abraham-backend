@@ -1,7 +1,6 @@
 import { Contact } from '../models'
 
-export class contactService {
-  myvar: string = 'hello'
+export class ContactService {
   postContact(contactForm) {
     // insert contact data into Contact collection
     const contact = new Contact(contactForm)
@@ -12,6 +11,17 @@ export class contactService {
         resolve()
       } catch (error) {
         reject(error)
+      }
+    })
+  }
+
+  contacts() {
+    return new Promise<void | any[]>(async (resolve, reject) => {
+      try {
+        const mycontacts = await Contact.find({})
+        resolve([...mycontacts])
+      } catch (error) {
+        reject()
       }
     })
   }
