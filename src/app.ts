@@ -4,7 +4,26 @@ import * as dotenv from 'dotenv'
 import { routes } from './api/v1/routes'
 import { main } from './config/mongo'
 
-dotenv.config()
+// Choose which env to use
+
+switch (process.env.NODE_ENV) {
+  case 'production':
+    dotenv.config({ path: './.env.production.local' })
+    break
+
+  case 'development':
+    dotenv.config({ path: './.env.development.local' })
+    break
+
+  case 'test':
+    dotenv.config({ path: './.env.test.local' })
+    break
+
+  default:
+    dotenv.config({ path: './.env' })
+    break
+}
+
 main()
 const app = express()
 

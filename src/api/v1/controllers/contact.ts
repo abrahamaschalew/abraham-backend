@@ -25,8 +25,8 @@ export const getContacts = async (req, res) => {
     const contacts: any = await contact.contacts()
     if (contacts.length == 0)
       return res.status(404).json({ message: 'Not found any contact message' })
-    res.status(500).json({ contacts })
+    res.status(200).json({ contacts })
   } catch (error) {
-    res.status(400).json({ error })
+    res.status(500).json({ error })
   }
 }

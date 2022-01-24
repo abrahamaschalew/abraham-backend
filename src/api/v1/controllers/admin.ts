@@ -21,3 +21,7 @@ export const adminLogin = async (req, res) => {
     res.status(400).json({ message: "Sorry, the user coudn't found" })
   }
 }
+
+export const checkAuth = (req, res) => {
+  res.status(200).json({ message: "You're logged In" })
+}
