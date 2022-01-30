@@ -16,7 +16,7 @@ export const adminLogin = async (req, res) => {
       expiresIn: '1800s'
     })
 
-    res.status(200).json({ message: 'User logged In', userData, token })
+    res.status(200).json({ message: 'User logged In', token })
   } catch (error) {
     res.status(400).json({ message: "Sorry, the user coudn't found" })
   }

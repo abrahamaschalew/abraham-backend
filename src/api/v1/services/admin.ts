@@ -8,7 +8,10 @@ export default class AdminService {
       try {
         const user = await Admin.findOne({
           username: form.username,
-          password: crypto.createHash('md5').update(form.password).digest('hex')
+          password: crypto
+            .createHash('sha256')
+            .update(form.password)
+            .digest('hex')
         })
         if (user == null) return reject()
         resolve(user)
